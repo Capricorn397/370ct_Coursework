@@ -1,18 +1,13 @@
-from threading import Thread
-from threading import Lock
 import threading
-lock = Lock()
+from threading import Thread
+import time
 cv = threading.Condition()
+end = True
 
 class Rover():
 	"""Create Class Objects"""
-	def __init__(self, w1 = [], w2 = [], w3 = [], w4 = [], w5 = [], w6 = [], position = []):
-		self.w1 = w1
-		self.w2 = w2
-		self.w3 = w3
-		self.w4 = w4
-		self.w5 = w5
-		self.w6 = w6
+	def __init__(self, wheel = [], position = []):
+		self.wheel = wheel
 		self.position = position
 
 	"""Casts outputs"""
@@ -43,43 +38,95 @@ class Rover():
 	def callHome(self, antenna):
 		return "This is the output"
 
-instance = Rover()
-
 def mainMenu():
-	x = 0
-	while x == 0:
+	global end
+	while end == True:
 		print('---MAIN MENU---')
 		print('1 - NOT_MADE')
 		print('2 - NOT_MADE')
 		print('3 - NOT_MADE')
 		print('4 - NOT_MADE')
 		print('5 - EXIT')
-		inp = input("Please Enter A Number - ")
-		if inp == '1':
+		inp = int(input("Please Enter A Number - "))
+		if inp == 1:
 			print('ERROR NOT MADE')
 			print(' ')
-		if inp == '2':
+		if inp == 2:
 			print('ERROR NOT MADE')
 			print(' ')
-		if inp == '3':
+		if inp == 3:
 			print('ERROR NOT MADE')
 			print(' ')
-		if inp == '4':
+		if inp == 4:
 			print('ERROR NOT MADE')
 			print(' ')
-		if inp == '5':
+		if inp == 5:
 			print('Exiting....')
-			x = 1
+			end = False
 		else:
 			("Error not a valid input")
 
+def wheel1():
+	while end == True:
+		cv.acquire()
+		#print('1')
+		cv.notifyAll()
+		cv.release()
+		time.sleep(.3)
+
+def wheel2():
+	while end == True:
+		cv.acquire()
+		#print('2')
+		cv.notifyAll()
+		cv.release()
+		time.sleep(.3)
+
+def wheel3():
+	while end == True:
+		cv.acquire()
+		#print('3')
+		cv.notifyAll()
+		cv.release()
+		time.sleep(.3)
+
+def wheel4():
+	while end == True:
+		cv.acquire()
+		#print('4')
+		cv.notifyAll()
+		cv.release()
+		time.sleep(.3)
+
+def wheel5():
+	while end == True:
+		cv.acquire()
+		#print('5')
+		cv.notifyAll()
+		cv.release()
+		time.sleep(.3)
+
+def wheel6():
+	while end == True:
+		cv.acquire()
+		#print('6')
+		cv.notifyAll()
+		cv.release()
+		time.sleep(.3)
+
 
 Main = Thread(target=mainMenu, args=())
-"""Antenna = Thread(target= , args=())
-Wheel1 = Thread(target= , args=())
-Wheel2 = Thread(target= , args=())
-Wheel3 = Thread(target= , args=())
-Wheel4 = Thread(target= , args=())
-Wheel5 = Thread(target= , args=())
-Wheel6 = Thread(target= , args=())"""
+"""Antenna = Thread(target= , args=())"""
+Wheel1 = Thread(target=wheel1, args=())
+Wheel2 = Thread(target=wheel2, args=())
+Wheel3 = Thread(target=wheel3, args=())
+Wheel4 = Thread(target=wheel4, args=())
+Wheel5 = Thread(target=wheel5, args=())
+Wheel6 = Thread(target=wheel6, args=())
 Main.start()
+Wheel1.start()
+Wheel2.start()
+Wheel3.start()
+Wheel4.start()
+Wheel5.start()
+Wheel6.start()
