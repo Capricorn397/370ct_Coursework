@@ -6,6 +6,7 @@ cv = threading.Condition()
 end = True
 checkStop = False
 moving = True
+senderWheel = 0
 
 class Rover():
 	"""Create Class Objects"""
@@ -28,22 +29,6 @@ class Rover():
 			print('is now Sinking')
 			self.wheelState = 'Sinking'
 			self.wheel = False
-
-	def wheelUp(self):
-		self.wheel = True
-		self.wheelState = 'Fine'
-		print('Wheel Up Fix')
-		return
-
-	def wheelDown(self):
-		self.wheel = True
-		self.wheelState = 'Fine'
-		print('Wheel Down Fix')
-		return
-
-
-	def callHome(self):
-		return "This is the output"
 
 w1 = Rover(True, 'Fine', 0)
 w2 = Rover(True, 'Fine', 0)
@@ -216,6 +201,38 @@ def randomError():
 		print('Wheel 6')
 		w6.error()
 
+def wheelUpThread():
+	cv.acquire()
+	"""SelectedWheel""".wheel = True
+	"""SelectedWheel""".wheelState = 'Fine'
+	print('Wheel Up Fix')
+	#Return to sender thread if fixed
+	#Otherwise go to help thread passing through wheel thread before
+	cv.notify()
+	cv.release()
+
+def wheelDownThread():
+	cv.acquire()
+	"""SelectedWheel""".wheel = True
+	"""SelectedWheel""".wheelState = 'Fine'
+	print('Wheel Down Fix')
+	#Return to sender thread if fixed
+	#Otherwise go to help thread passing through wheel thread before
+	cv.notify()
+	cv.release()
+
+def callForHelp(wheel, problem):
+	cv.acquire()
+	"""Print what needs fixing"""
+	print('Rover needs help with ' + wheel + ' with issue ' + problem)
+	fix = int(input('Enter 1 to fix'))
+	if fix == 1:
+		"""Fix all problems"""
+	else:
+		print('Error no fix sent')
+	cv.notify()
+	cv.release()
+
 Main = Thread(target=mainMenu, args=())
 Checker = Thread(target=checker , args=())
 Wheel1 = Thread(target=wheel1, args=())
@@ -224,6 +241,9 @@ Wheel3 = Thread(target=wheel3, args=())
 Wheel4 = Thread(target=wheel4, args=())
 Wheel5 = Thread(target=wheel5, args=())
 Wheel6 = Thread(target=wheel6, args=())
+WheelUp = Thread(target=wheelUpThread, args=())
+WheelDown = Thread(target=wheelDownThread, args=())
+Help = Thread(target=callForHelp, args=())
 Main.start()
 Wheel1.start()
 Wheel2.start()
@@ -232,3 +252,6 @@ Wheel4.start()
 Wheel5.start()
 Wheel6.start()
 Checker.start()
+WheelUp.start()
+WheelDown.start()
+Help.start()
