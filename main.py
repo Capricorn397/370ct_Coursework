@@ -11,6 +11,7 @@ moving = True
 selectedWheel = 0
 helpSelect = False
 fixThreads = False
+rock = False
 fix = ''
 fiveMRun = False
 runChecker = []
@@ -33,6 +34,12 @@ class Rover():
 		self.wheel = False
 		self.target = randint(1,4)
 
+	def rock(self):
+		log.append('has encountered a rock')
+		self.wheelState = False
+		self.wheel = False
+		self.target = 3
+
 w1 = Rover(True, True, 0)
 w2 = Rover(True, True, 0)
 w3 = Rover(True, True, 0)
@@ -45,6 +52,7 @@ def mainMenu():
 	global runChecker
 	global runs
 	global fiveMRun
+	global rock
 	while end == True:
 		if runs == 1:
 			print('---MAIN MENU---')
@@ -77,7 +85,13 @@ def mainMenu():
 			cv.notifyAll()
 			cv.release()
 		if inp == 3:
-			log.append('ERROR NOT MADE')
+			cv.acquire()
+			log.append('Generating Rock Error')
+			rock = True
+			randomError()
+			rock = False
+			cv.notifyAll()
+			cv.release()
 		if inp == 4:
 			log.append('5m Run With Random Errors')
 			if runs == 1:
@@ -222,6 +236,7 @@ def checker():
 
 def randomError():
 	global helpSelect
+	global rock
 	global fiveMRun
 	global runChecker
 	if helpSelect == False:
@@ -232,22 +247,40 @@ def randomError():
 			runChecker.remove(wheelSelect)
 		if wheelSelect == 1:
 			log.append('Wheel 1')
-			w1.error()
+			if rock == True:
+				w1.rock()
+			else:
+				w1.error()
 		if wheelSelect == 2:
 			log.append('Wheel 2')
-			w2.error()
+			if rock == True:
+				w2.rock()
+			else:
+				w2.error()
 		if wheelSelect == 3:
 			log.append('Wheel 3')
-			w3.error()
+			if rock == True:
+				w3.rock()
+			else:
+				w3.error()
 		if wheelSelect == 4:
 			log.append('Wheel 4')
-			w4.error()
+			if rock == True:
+				w4.rock()
+			else:
+				w4.error()
 		if wheelSelect == 5:
 			log.append('Wheel 5')
-			w5.error()
+			if rock == True:
+				w5.rock()
+			else:
+				w5.error()
 		if wheelSelect == 6:
 			log.append('Wheel 6')
-			w6.error()
+			if rock == True:
+				w6.rock()
+			else:
+				w6.error()
 
 def wheelUpThread():
 	global helpSelect
@@ -349,32 +382,32 @@ def rockFix():
 					if w1.target == 3:
 						w1.wheelState = True
 						w1.wheel = True
-						log.append('Wheel 1 Down Fix')
+						log.append('Wheel 1 Rock Fix')
 				if selectedWheel == 2:
 					if w2.target == 3:
 						w2.wheelState = True
 						w2.wheel = True
-						log.append('Wheel 2 Down Fix')
+						log.append('Wheel 2 Rock Fix')
 				if selectedWheel == 3:
 					if w3.target == 3:
 						w3.wheelState = True
 						w3.wheel = True
-						log.append('Wheel 3 Down Fix')
+						log.append('Wheel 3 Rock Fix')
 				if selectedWheel == 4:
 					if w4.target == 3:
 						w4.wheelState = True
 						w4.wheel = True
-						log.append('Wheel 4 Down Fix')
+						log.append('Wheel 4 Rock Fix')
 				if selectedWheel == 5:
 					if w5.target == 3:
 						w5.wheelState = True
 						w5.wheel = True
-						log.append('Wheel 5 Down Fix')
+						log.append('Wheel 5 Rock Fix')
 				if selectedWheel == 6:
 					if w6.target == 3:
 						w6.wheelState = True
 						w6.wheel = True
-						log.append('Wheel 6 Down Fix')
+						log.append('Wheel 6 Rock Fix')
 				fix = 0
 				fixThreads = False
 				if selectedWheel == 1:
