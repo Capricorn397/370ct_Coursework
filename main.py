@@ -380,21 +380,27 @@ def rockFix():
 				if selectedWheel == 1:
 					if w1.wheel != True:
 						helpSelect = True
+						fixThreads = True
 				if selectedWheel == 2:
 					if w2.wheel != True:
 						helpSelect = True
+						fixThreads = True
 				if selectedWheel == 3:
 					if w3.wheel != True:
 						helpSelect = True
+						fixThreads = True
 				if selectedWheel == 4:
 					if w4.wheel != True:
 						helpSelect = True
+						fixThreads = True
 				if selectedWheel == 5:
 					if w5.wheel != True:
 						helpSelect = True
+						fixThreads = True
 				if selectedWheel == 6:
 					if w6.wheel != True:
 						helpSelect = True
+						fixThreads = True
 				cv.notifyAll()
 				cv.release()
 
@@ -446,6 +452,7 @@ def callForHelp():
 				w6.wheelState = True
 				w6.target = 0
 			helpSelect = False
+			fixThreads = False
 			cv.notify()
 			cv.release()
 
