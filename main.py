@@ -7,7 +7,7 @@ cv = threading.Condition()
 end = True #Variable to keep program running
 runs = 1 #Run counter for the 5m run
 checkStop = False #Variable for checking if checker is starting or stopping rover
-moving = True #Variable for chceking if rover is vectoring
+moving = True #Variable for checking if rover is vectoring
 selectedWheel = 0 #Chosen wheel to try fixes on
 helpSelect = False #Variable to chose to call for help
 fixThreads = False #Variable to select the fixing threads
@@ -17,8 +17,8 @@ fiveMRun = False #Variable to show it is the 5m run
 runChecker = [] #Array of wheels affected by the 5m run
 log = [] #The log array that is Outputted
 
-"""Rover Class Used to create and store information for each wheel"""
-class Rover():
+"""Wheel Class Used to create and store information for each wheel"""
+class Wheel():
 	"""Create Class Objects"""
 	def __init__(self, wheel, wheelState, target):
 		self.wheel = wheel
@@ -43,12 +43,12 @@ class Rover():
 		self.wheel = False
 		self.target = 3
 """Create the 6 wheels as class instances"""
-w1 = Rover(True, True, 0)
-w2 = Rover(True, True, 0)
-w3 = Rover(True, True, 0)
-w4 = Rover(True, True, 0)
-w5 = Rover(True, True, 0)
-w6 = Rover(True, True, 0)
+w1 = Wheel(True, True, 0)
+w2 = Wheel(True, True, 0)
+w3 = Wheel(True, True, 0)
+w4 = Wheel(True, True, 0)
+w5 = Wheel(True, True, 0)
+w6 = Wheel(True, True, 0)
 
 """Main Menu Thread"""
 def mainMenu():
