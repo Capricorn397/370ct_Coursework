@@ -54,7 +54,7 @@ def mainMenu():
 	global fiveMRun
 	global rock
 	while end == True:
-		if runs == 1:
+		if runs == 1 or runs == 2:
 			print('---MAIN MENU---')
 			print('1 - Generate Random Error')
 			print('2 - Generate Multiple Errors')
