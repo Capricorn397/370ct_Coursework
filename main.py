@@ -235,11 +235,13 @@ def checker():
 			if (moving == False) and (w1.wheel == True and w2.wheel == True and w3.wheel == True and w4.wheel == True and w5.wheel == True and w6.wheel == True): #If not moving and all wheels fine
 				moving = True #Start moving
 				checkStop = False #Set checking to false
+				print("Starting Rover Movement")
 				log.append('Starting') #Add to log
 			if w1.wheel == False or w2.wheel == False or w3.wheel == False or w4.wheel == False or w5.wheel == False or w6.wheel == False: #If any wheel has an error
 				if checkStop == False: #If checking is false
 					checkStop = True #Set checking to true
 					moving = False #Stop moving
+					print("Stopping Rover Movement")
 					log.append('Stopped') #Add to log
 			cv.notifyAll() #Notify
 			cv.release() #Release
@@ -484,6 +486,8 @@ def callForHelp():
 				w6.wheel = True #Fix Wheel
 				w6.wheelState = True
 				w6.target = 0
+			print("Starting Rover Movement")
+			log.append('Starting')
 			helpSelect = False #Stop calling for help
 			fixThreads = False #Allow non fixing threads to run
 			cv.notify() #Notify

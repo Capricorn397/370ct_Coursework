@@ -1,9 +1,42 @@
+Generating Error on one wheel
+Wheel 2
+has an error
+Stopped
+Up Fixes For Wheel 2
+Down Fixes For Wheel 2
+Rock Fixes For Wheel 2
+Wheel 2 Rock Fix
+Starting
+Generate Error on multiple wheels
+Wheel 1
+has an error
+Wheel 2
+has an error
+Wheel 3
+has an error
+Stopped
+Up Fixes For Wheel 1
+Wheel 1 Up Fix
+Down Fixes For Wheel 1
+Rock Fixes For Wheel 1
+Up Fixes For Wheel 2
+Down Fixes For Wheel 2
+Wheel 2 Down Fix
+Rock Fixes For Wheel 2
+Up Fixes For Wheel 3
+Down Fixes For Wheel 3
+Wheel 3 Down Fix
+Rock Fixes For Wheel 3
+Starting
 5m Run With Random Errors
 Generating Error on one wheel
 Wheel 4
 has an error
 Generating Error on one wheel
-Wheel 5
+Wheel 3
+has an error
+Generating Error on one wheel
+Wheel 1
 has an error
 Generating Error on one wheel
 Wheel 2
@@ -11,11 +44,20 @@ has an error
 Generating Error on one wheel
 Wheel 6
 has an error
-Generating Error on one wheel
-Wheel 1
-has an error
 Stopped
-Up Fixes For Wheel 5
-Down Fixes For Wheel 5
-Rock Fixes For Wheel 5
-Rover Cannot Fix Itself And Is Calling For Assistance For Wheel 5
+Up Fixes For Wheel 2
+Down Fixes For Wheel 2
+Wheel 2 Down Fix
+Rock Fixes For Wheel 2
+Up Fixes For Wheel 6
+Down Fixes For Wheel 6
+Rock Fixes For Wheel 6
+Wheel 6 Rock Fix
+Up Fixes For Wheel 3
+Down Fixes For Wheel 3
+Wheel 3 Down Fix
+Rock Fixes For Wheel 3
+Up Fixes For Wheel 4
+Down Fixes For Wheel 4
+Rock Fixes For Wheel 4
+Rover Cannot Fix Itself And Is Calling For Assistance For Wheel 4
